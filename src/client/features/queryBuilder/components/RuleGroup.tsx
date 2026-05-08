@@ -36,16 +36,17 @@ export function RuleGroup({ name, onRemove, depth }: RuleGroupProps) {
       data-testid={`rule-group-depth-${depth}`}
       data-depth={depth}
     >
+      {groupHasError && (
+        <p
+          className="text-red-500"
+          role="alert"
+          data-testid={`group-error-depth-${depth}`}
+        >
+          Your adding an empty group please remove or add atleast one field
+        </p>
+      )}
       <header className="flex items-center justify-between gap-4 flex-wrap">
-        {groupHasError && (
-          <p
-            className="text-red-500"
-            role="alert"
-            data-testid={`group-error-depth-${depth}`}
-          >
-            Your adding an empty group please remove or add atleast one field
-          </p>
-        )}
+
 
         <div className="flex items-center flex-wrap gap-3">
           <span className="text-sm font-medium text-gray-700">
@@ -85,6 +86,7 @@ export function RuleGroup({ name, onRemove, depth }: RuleGroupProps) {
         {!isRoot && onRemove && (
           <Button
             type="button"
+            variant="danger"
             onClick={onRemove}
             data-testid={`remove-group-depth-${depth}`}
           >
